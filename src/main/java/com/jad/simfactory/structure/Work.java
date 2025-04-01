@@ -25,6 +25,6 @@ public class Work implements Runnable {
 
     @Override
     public void run() {
-        // To do
+        // todo: implement the run method
     }
 }

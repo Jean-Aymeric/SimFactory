@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Works extends FactoryData<Work> {
+    private static final int NbRecipes = 20;
     private final ArrayList<Recipe> recipes;
     private final ArrayList<MachineTool> machineTools;
 
@@ -16,21 +17,19 @@ public class Works extends FactoryData<Work> {
         this.machineTools = machineTools;
     }
 
-    private static final int NbRecipes = 10;
-
-    private Recipe getRandomRecipe() {
-        return this.recipes.get(new Random().nextInt(this.recipes.size()));
-    }
-
     @Override
     protected void generateDataSet() {
         for (MachineTool machineTool : this.machineTools) {
             this.addData(new Work(machineTool));
         }
         int idMachineTool = 0;
-        for (int i = 0; i < Works.NbRecipes;i++) {
+        for (int i = 0; i < Works.NbRecipes; i++) {
             this.dataSet.get(idMachineTool).addRecipe(this.getRandomRecipe());
             idMachineTool = (idMachineTool + 1) % this.dataSet.size();
         }
+    }
+
+    private Recipe getRandomRecipe() {
+        return this.recipes.get(new Random().nextInt(this.recipes.size()));
     }
 }

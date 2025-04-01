@@ -17,6 +17,10 @@ public class Recipe {
         return this.product;
     }
 
+    public String getActionLabel() {
+        return this.action.label();
+    }
+
     public Action getAction() {
         return this.action;
     }
@@ -26,18 +30,12 @@ public class Recipe {
     }
 
     public void addProduct(final Product product) {
-        if (! this.products.contains(product)) {
+        if (!this.products.contains(product)) {
             this.products.add(product);
         }
     }
 
-    public int countActions() {
-        int count = 1;
-        for (Product product : this.products) {
-            if (product.getRecipe() != null) {
-                count += product.getRecipe().countActions();
-            }
-        }
-        return count;
+    public long getDuration() {
+        return this.action.delay();
     }
 }
